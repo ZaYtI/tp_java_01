@@ -24,7 +24,7 @@ import java.util.Collections;
  *
  * @version 0.1.0
  */
-class Firework {
+class Firework implements LaunchFireWork {
 
     /**
      * La taille du feu d'artifice.
@@ -54,6 +54,56 @@ class Firework {
         this.isDouble = isDouble;
     }
 
+    /**
+     * Lance un feu d'artifice.
+     *
+     */
+    @Override
+    public void launchFirework() {
+        // On change l'affichage dans la console pour avoir la couleur appropriée.
+        if ("RED".equals(this.color)) {
+            System.out.print("\033[0;31m");
+
+        } else if ("GREEN".equals(this.color)) {
+            System.out.print("\033[0;32m");
+
+        } else if ("BLUE".equals(this.color)) {
+            System.out.print("\033[0;34m");
+
+        } else if ("YELLOW".equals(this.color)) {
+            System.out.print("\033[0;33m");
+
+        } else {
+            System.out.print("\033[0;37m");
+        }
+
+        // On affiche le feu d'artifice.
+        try {
+            switch (size) {
+                case SMALL:
+                    if (isDouble) System.out.print(" boum !");
+                    Thread.sleep(500);
+                    break;
+
+                case MEDIUM:
+                    if (isDouble) System.out.print(" Boouum !!");
+                    Thread.sleep(1000);
+                    break;
+
+                default:
+                    if (isDouble) System.out.print(" BOOOOUUUUM !!!!");
+                    Thread.sleep(1500);
+                    break;
+            }
+
+        } catch (InterruptedException e) {
+            // Ceci ne doit jamais se produire.
+            e.printStackTrace();
+        }
+
+        // On remet la console dans son état d'origine.
+        System.out.println("\033[0m");
+    }
 }
 
 /**
@@ -85,79 +135,7 @@ class BeesFirework {
  *
  * @version 0.1.0
  */
-public class FireworkShow {
-    /**
-     * La taille d'un petit feu d'artifice.
-     */
-    public static final int SMALL = 1;
-
-    /**
-     * La taille d'un feu d'artifice moyen.
-     */
-    public static final int MEDIUM = 2;
-
-    /**
-     * La taille d'un grand feu d'artifice.
-     */
-    public static final int BIG = 3;
-
-    /**
-     * Lance un feu d'artifice.
-     * 
-     * @param firework Le feu d'artifice à lancer.
-     */
-    static void launchFirework(Firework firework) {
-        // On change l'affichage dans la console pour avoir la couleur appropriée.
-        if ("RED".equals(firework.color)) {
-            System.out.print("\033[0;31m");
-            
-        } else if ("GREEN".equals(firework.color)) {
-            System.out.print("\033[0;32m");
-            
-        } else if ("BLUE".equals(firework.color)) {
-            System.out.print("\033[0;34m");
-            
-        } else if ("YELLOW".equals(firework.color)) {
-            System.out.print("\033[0;33m");
-            
-        } else {
-            System.out.print("\033[0;37m");
-        }
-        
-        // On affiche le feu d'artifice.
-        try {
-            switch (firework.size) {
-                case SMALL:
-                    // C'est un petit feu d'artifice.
-                    System.out.print("boum !");
-                    if (firework.isDouble) System.out.print(" boum !");
-                    Thread.sleep(500);
-                    break;
-
-                case MEDIUM:
-                    // C'est un feu d'artifice moyen.
-                    System.out.print("Boouum !!");
-                    if (firework.isDouble) System.out.print(" Boouum !!");
-                    Thread.sleep(1000);
-                    break;
-
-                default:
-                    // C'est un grand feu d'artifice.
-                    System.out.print("BOOOOUUUUM !!!!");
-                    if (firework.isDouble) System.out.print(" BOOOOUUUUM !!!!");
-                    Thread.sleep(1500);
-                    break;
-            }
-            
-        } catch (InterruptedException e) {
-            // Ceci ne doit jamais se produire.
-            e.printStackTrace();
-        }
-       
-        // On remet la console dans son état d'origine.
-        System.out.println("\033[0m");
-    }
-    
+public class FireworkShow{
     /**
      * Démarre le programme.
      *
@@ -166,11 +144,11 @@ public class FireworkShow {
     public static void main(String[] args) {
         ArrayList<Object> fireworks = new ArrayList<Object>();
 
-        fireworks.add(new Firework(new FailedExplosion(), "RED", true));
-        fireworks.add(new Firework(new FailedExplosion(), "GREEN", true));
-        fireworks.add(new Firework(new FailedExplosion(), "BLUE", true));
-        fireworks.add(new Firework(new FailedExplosion(), "YELLOW", true));
-        fireworks.add(new Firework(new FailedExplosion(), "WHITE", true));
+        fireworks.add(new FailedFireworkProxy(new Firework(new FailedExplosion(), "RED", true)));
+        fireworks.add(new FailedFireworkProxy(new Firework(new FailedExplosion(), "GREEN", true)));
+        fireworks.add(new FailedFireworkProxy(new Firework(new FailedExplosion(), "BLUE", true)));
+        fireworks.add(new FailedFireworkProxy(new Firework(new FailedExplosion(), "YELLOW", true)));
+        fireworks.add(new FailedFireworkProxy(new Firework(new FailedExplosion(), "WHITE", true)));
         
         fireworks.add(new Firework(new FailedExplosion(), "RED", false));
         fireworks.add(new Firework(new FailedExplosion(), "GREEN", false));
@@ -225,7 +203,7 @@ public class FireworkShow {
         for (int i = 0; i < fireworks.size(); i++) {
             Object firework = fireworks.get(i);
             if (firework instanceof Firework) {
-                launchFirework((Firework) firework);
+                ((Firework) firework).launchFirework();
             } else {
                 System.out.println(((BeesFirework) firework).getBeesExplosionString());
             }
