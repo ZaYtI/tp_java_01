@@ -87,8 +87,7 @@ public class FireworkShow{
      * @param args Les arguments de la ligne de commande.
      */
     public static void main(String[] args) {
-        ArrayList<Object> fireworks = new ArrayList<Object>();
-
+        ArrayList<LaunchFireWork> fireworks = new ArrayList<>();
         fireworks.add(new FailedFireworkProxy(new Firework(new FailedExplosion(), Color.RED)));
         fireworks.add(new FailedFireworkProxy(new Firework(new FailedExplosion(), Color.GREEN)));
         fireworks.add(new FailedFireworkProxy(new Firework(new FailedExplosion(), Color.BLUE)));
@@ -137,21 +136,23 @@ public class FireworkShow{
         fireworks.add(new FailedFireworkProxy(new Firework(new BigExplosion(), Color.YELLOW)));
         fireworks.add(new FailedFireworkProxy(new Firework(new BigExplosion(), Color.WHITE)));
         
-        fireworks.add(new BeesFirework());
-        fireworks.add(new BeesFirework());
-        fireworks.add(new BeesFirework());
-        fireworks.add(new BeesFirework());
-        fireworks.add(new BeesFirework());
+        fireworks.add(FireworkAdaptater.getInstance());
+        fireworks.add(FireworkAdaptater.getInstance());
+        fireworks.add(FireworkAdaptater.getInstance());
+        fireworks.add(FireworkAdaptater.getInstance());
+        fireworks.add(FireworkAdaptater.getInstance());
+
+        fireworks.add(new CometFirework());
+        fireworks.add(new CometFirework());
+        fireworks.add(new CometFirework());
+
 
         Collections.shuffle(fireworks);
         
         for (int i = 0; i < fireworks.size(); i++) {
-            Object firework = fireworks.get(i);
-            if (firework instanceof Firework) {
-                ((Firework) firework).launchFirework();
-            } else {
-                System.out.println(((BeesFirework) firework).getBeesExplosionString());
-            }
+            LaunchFireWork firework = fireworks.get(i);
+            (firework).launchFirework();
+
         }
     }
 
