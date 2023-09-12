@@ -78,29 +78,7 @@ class Firework implements LaunchFireWork {
         }
 
         // On affiche le feu d'artifice.
-        try {
-            switch (size) {
-                case SMALL:
-                    if (isDouble) System.out.print(" boum !");
-                    Thread.sleep(500);
-                    break;
-
-                case MEDIUM:
-                    if (isDouble) System.out.print(" Boouum !!");
-                    Thread.sleep(1000);
-                    break;
-
-                default:
-                    if (isDouble) System.out.print(" BOOOOUUUUM !!!!");
-                    Thread.sleep(1500);
-                    break;
-            }
-
-        } catch (InterruptedException e) {
-            // Ceci ne doit jamais se produire.
-            e.printStackTrace();
-        }
-
+        size.explosionSize();
         // On remet la console dans son état d'origine.
         System.out.println("\033[0m");
     }
