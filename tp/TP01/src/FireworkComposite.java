@@ -3,14 +3,14 @@ import java.util.List;
 
 public class FireworkComposite implements LaunchFireWork{
 
-    private List<Firework> feuxEnfants = new ArrayList<>();
+    private List<LaunchFireWork> feuxEnfants = new ArrayList<>();
 
-    public void addFirework(Firework feu) {
+    public void addFirework(LaunchFireWork feu) {
         feuxEnfants.add(feu);
     }
     @Override
     public void launchFirework() {
-        for (Firework feu : feuxEnfants) {
+        for (LaunchFireWork feu : feuxEnfants) {
             feu.launchFirework();
         }
     }
