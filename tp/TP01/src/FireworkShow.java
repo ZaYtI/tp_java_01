@@ -35,22 +35,15 @@ class Firework implements LaunchFireWork {
      * La couleur du feu d'artifice.
      */
     Color color;
-
-    /**
-     * Si le feu d'artifice explose deux fois.
-     */
-    boolean isDouble;
     /**
      * Crée une nouvelle instance de Firework.
      *
      * @param size La taille du feu d'artifice.
      * @param color La couleur du feu d'artifice.
-     * @param isDouble Si le feu d'artifice explose deux fois.
      */
-    public Firework(ExplosionSize size, Color color, boolean isDouble) {
+    public Firework(ExplosionSize size, Color color) {
         this.size = size;
         this.color = color;
-        this.isDouble = isDouble;
     }
   
     @Override
@@ -96,53 +89,53 @@ public class FireworkShow{
     public static void main(String[] args) {
         ArrayList<Object> fireworks = new ArrayList<Object>();
 
-        fireworks.add(new FailedFireworkProxy(new Firework(new FailedExplosion(), Color.RED, true)));
-        fireworks.add(new FailedFireworkProxy(new Firework(new FailedExplosion(), Color.GREEN, true)));
-        fireworks.add(new FailedFireworkProxy(new Firework(new FailedExplosion(), Color.BLUE, true)));
-        fireworks.add(new FailedFireworkProxy(new Firework(new FailedExplosion(), Color.YELLOW, true)));
-        fireworks.add(new FailedFireworkProxy(new Firework(new FailedExplosion(), Color.WHITE, true)));
+        fireworks.add(new FailedFireworkProxy(new Firework(new FailedExplosion(), Color.RED)));
+        fireworks.add(new FailedFireworkProxy(new Firework(new FailedExplosion(), Color.GREEN)));
+        fireworks.add(new FailedFireworkProxy(new Firework(new FailedExplosion(), Color.BLUE)));
+        fireworks.add(new FailedFireworkProxy(new Firework(new FailedExplosion(), Color.YELLOW)));
+        fireworks.add(new FailedFireworkProxy(new Firework(new FailedExplosion(), Color.WHITE)));
         
-        fireworks.add(new Firework(new FailedExplosion(), Color.RED, false));
-        fireworks.add(new Firework(new FailedExplosion(), Color.GREEN, false));
-        fireworks.add(new Firework(new FailedExplosion(), Color.BLUE, false));
-        fireworks.add(new Firework(new FailedExplosion(), Color.YELLOW, false));
-        fireworks.add(new Firework(new FailedExplosion(), Color.WHITE, false));
+        fireworks.add(new FireworkDecorator(new Firework(new FailedExplosion(), Color.RED)));
+        fireworks.add(new Firework(new FailedExplosion(), Color.GREEN));
+        fireworks.add(new Firework(new FailedExplosion(), Color.BLUE));
+        fireworks.add(new Firework(new FailedExplosion(), Color.YELLOW));
+        fireworks.add(new Firework(new FailedExplosion(), Color.WHITE));
         
-        fireworks.add(new Firework(new SmallExplosion(), Color.RED, true));
-        fireworks.add(new Firework(new SmallExplosion(), Color.GREEN, true));
-        fireworks.add(new Firework(new SmallExplosion(), Color.BLUE, true));
-        fireworks.add(new Firework(new SmallExplosion(), Color.YELLOW, true));
-        fireworks.add(new Firework(new SmallExplosion(), Color.WHITE, true));
+        fireworks.add(new Firework(new SmallExplosion(), Color.RED));
+        fireworks.add(new Firework(new SmallExplosion(), Color.GREEN));
+        fireworks.add(new Firework(new SmallExplosion(), Color.BLUE));
+        fireworks.add(new Firework(new SmallExplosion(), Color.YELLOW));
+        fireworks.add(new Firework(new SmallExplosion(), Color.WHITE));
         
-        fireworks.add(new Firework(new SmallExplosion(), Color.RED, false));
-        fireworks.add(new Firework(new SmallExplosion(), Color.GREEN, false));
-        fireworks.add(new Firework(new SmallExplosion(), Color.BLUE, false));
-        fireworks.add(new Firework(new SmallExplosion(), Color.YELLOW, false));
-        fireworks.add(new Firework(new SmallExplosion(), Color.WHITE, false));
+        fireworks.add(new Firework(new SmallExplosion(), Color.RED));
+        fireworks.add(new Firework(new SmallExplosion(), Color.GREEN));
+        fireworks.add(new Firework(new SmallExplosion(), Color.BLUE));
+        fireworks.add(new Firework(new SmallExplosion(), Color.YELLOW));
+        fireworks.add(new Firework(new SmallExplosion(), Color.WHITE));
         
-        fireworks.add(new Firework(new MediumExplosion(), Color.RED, true));
-        fireworks.add(new Firework(new MediumExplosion(), Color.GREEN, true));
-        fireworks.add(new Firework(new MediumExplosion(), Color.BLUE, true));
-        fireworks.add(new Firework(new MediumExplosion(), Color.YELLOW, true));
-        fireworks.add(new Firework(new MediumExplosion(), Color.WHITE, true));
+        fireworks.add(new Firework(new MediumExplosion(), Color.RED));
+        fireworks.add(new Firework(new MediumExplosion(), Color.GREEN));
+        fireworks.add(new Firework(new MediumExplosion(), Color.BLUE));
+        fireworks.add(new Firework(new MediumExplosion(), Color.YELLOW));
+        fireworks.add(new Firework(new MediumExplosion(), Color.WHITE));
         
-        fireworks.add(new Firework(new MediumExplosion(), Color.RED, false));
-        fireworks.add(new Firework(new MediumExplosion(), Color.GREEN, false));
-        fireworks.add(new Firework(new MediumExplosion(), Color.BLUE, false));
-        fireworks.add(new Firework(new MediumExplosion(), Color.YELLOW, false));
-        fireworks.add(new Firework(new MediumExplosion(), Color.WHITE, false));
+        fireworks.add(new Firework(new MediumExplosion(), Color.RED));
+        fireworks.add(new Firework(new MediumExplosion(), Color.GREEN));
+        fireworks.add(new Firework(new MediumExplosion(), Color.BLUE));
+        fireworks.add(new Firework(new MediumExplosion(), Color.YELLOW));
+        fireworks.add(new Firework(new MediumExplosion(), Color.WHITE));
         
-        fireworks.add(new Firework(new BigExplosion(), Color.RED, true));
-        fireworks.add(new Firework(new BigExplosion(), Color.GREEN, true));
-        fireworks.add(new Firework(new BigExplosion(), Color.BLUE, true));
-        fireworks.add(new Firework(new BigExplosion(), Color.YELLOW, true));
-        fireworks.add(new Firework(new BigExplosion(), Color.WHITE, true));
+        fireworks.add(new Firework(new BigExplosion(), Color.RED));
+        fireworks.add(new Firework(new BigExplosion(), Color.GREEN));
+        fireworks.add(new Firework(new BigExplosion(), Color.BLUE));
+        fireworks.add(new Firework(new BigExplosion(), Color.YELLOW));
+        fireworks.add(new Firework(new BigExplosion(), Color.WHITE));
         
-        fireworks.add(new Firework(new BigExplosion(), Color.RED, false));
-        fireworks.add(new Firework(new BigExplosion(), Color.GREEN, false));
-        fireworks.add(new Firework(new BigExplosion(), Color.BLUE, false));
-        fireworks.add(new Firework(new BigExplosion(), Color.YELLOW, false));
-        fireworks.add(new Firework(new BigExplosion(), Color.WHITE, false));
+        fireworks.add(new Firework(new BigExplosion(), Color.RED));
+        fireworks.add(new Firework(new BigExplosion(), Color.GREEN));
+        fireworks.add(new Firework(new BigExplosion(), Color.BLUE));
+        fireworks.add(new Firework(new BigExplosion(), Color.YELLOW));
+        fireworks.add(new Firework(new BigExplosion(), Color.WHITE));
         
         fireworks.add(new BeesFirework());
         fireworks.add(new BeesFirework());
