@@ -34,13 +34,12 @@ class Firework implements LaunchFireWork {
     /**
      * La couleur du feu d'artifice.
      */
-    String color;
+    Color color;
 
     /**
      * Si le feu d'artifice explose deux fois.
      */
     boolean isDouble;
-
     /**
      * Crée une nouvelle instance de Firework.
      *
@@ -48,33 +47,31 @@ class Firework implements LaunchFireWork {
      * @param color La couleur du feu d'artifice.
      * @param isDouble Si le feu d'artifice explose deux fois.
      */
-    public Firework(ExplosionSize size, String color, boolean isDouble) {
+    public Firework(int size, Color color, boolean isDouble) {
         this.size = size;
         this.color = color;
         this.isDouble = isDouble;
     }
-
-    /**
-     * Lance un feu d'artifice.
-     *
-     */
-    @Override
+  
+      @Override
     public void launchFirework() {
         // On change l'affichage dans la console pour avoir la couleur appropriée.
-        if ("RED".equals(this.color)) {
-            System.out.print("\033[0;31m");
-
-        } else if ("GREEN".equals(this.color)) {
-            System.out.print("\033[0;32m");
-
-        } else if ("BLUE".equals(this.color)) {
-            System.out.print("\033[0;34m");
-
-        } else if ("YELLOW".equals(this.color)) {
-            System.out.print("\033[0;33m");
-
-        } else {
-            System.out.print("\033[0;37m");
+        switch (firework.color) {
+            case RED:
+                System.out.print("\033[0;31m");
+                break;
+            case GREEN:
+                System.out.print("\033[0;32m");
+                break;
+            case BLUE:
+                System.out.print("\033[0;34m");
+                break;
+            case YELLOW:
+                System.out.print("\033[0;33m");
+                break;
+            default:
+                System.out.print("\033[0;37m");
+                break;
         }
 
         // On affiche le feu d'artifice.
@@ -83,15 +80,6 @@ class Firework implements LaunchFireWork {
         System.out.println("\033[0m");
     }
 }
-
-/**
- * La classe BeesFirework représente un type particulier de feux d'artifice,
- * qui se comportent comme un groupe d'abeilles.
- *
- * @author Romain Wallon
- *
- * @version 0.1.0
- */
 class BeesFirework {
 
     /**
@@ -105,6 +93,8 @@ class BeesFirework {
     }
 
 }
+
+
 
 /**
  * La classe FireworkShow permet de simuler un spectacle de feux d'artifice.
