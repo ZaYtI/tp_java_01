@@ -7,7 +7,7 @@ public class FailedFireworkProxy implements LaunchFireWork{
     @Override
     public void launchFirework() {
         if(Math.random() < 0.2){
-            System.out.println("System.out.print(\"pschit\");");
+            System.out.println("pschit");
             return;
         }
         firework.launchFirework();
