@@ -142,6 +142,11 @@ public class FireworkShow{
         fireworks.add(FireworkAdaptater.getInstance());
         fireworks.add(FireworkAdaptater.getInstance());
 
+        fireworks.add(new CometFirework());
+        fireworks.add(new CometFirework());
+        fireworks.add(new CometFirework());
+
+
         Collections.shuffle(fireworks);
         
         for (int i = 0; i < fireworks.size(); i++) {
