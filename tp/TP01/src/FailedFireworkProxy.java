@@ -1,11 +1,15 @@
 public class FailedFireworkProxy implements LaunchFireWork{
 
-    Firework firework;
-    public FailedFireworkProxy(Firework firework){
+    LaunchFireWork firework;
+    public FailedFireworkProxy(LaunchFireWork firework){
         this.firework = firework;
     }
     @Override
     public void launchFirework() {
-        System.out.println("System.out.print(\"pschit\");");
+        if(Math.random() < 0.2){
+            System.out.println("System.out.print(\"pschit\");");
+            return;
+        }
+        firework.launchFirework();
     }
 }
