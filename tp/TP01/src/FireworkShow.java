@@ -135,6 +135,12 @@ public class FireworkShow{
         fireworks.add(new FailedFireworkProxy(new Firework(new BigExplosion(), Color.BLUE)));
         fireworks.add(new FailedFireworkProxy(new Firework(new BigExplosion(), Color.YELLOW)));
         fireworks.add(new FailedFireworkProxy(new Firework(new BigExplosion(), Color.WHITE)));
+
+        FireworkComposite fireworkComposite = new FireworkComposite();
+        fireworkComposite.addFirework(new Firework(new SmallExplosion(), Color.RED));
+        fireworkComposite.addFirework(new Firework(new SmallExplosion(), Color.GREEN));
+        fireworkComposite.addFirework(new Firework(new SmallExplosion(), Color.BLUE));
+        fireworkComposite.addFirework(new Firework(new SmallExplosion(), Color.YELLOW));
         
         fireworks.add(FireworkAdaptater.getInstance());
         fireworks.add(FireworkAdaptater.getInstance());
